@@ -1,21 +1,15 @@
-/** @jsx jsx */
-import { jsx, css } from '@emotion/react'
+/** @jsxImportSource @emotion/react */
 import React, { FC } from "react";
 import { IPost } from "../../interfaces";
 
-const titleStyle = css({
-    boxSizing: 'border-box',
-    width: 300,
-    height: 200
-})
-
-export const Post: FC<IPost> = ({ body, id, title, userId }) => {
+export const Post: FC<IPost> = ({ body, id, title, userId, onPostClick }) => {
     return (
-        <div css={titleStyle}>
-            <span>{body}</span>
-            <span>{id}</span>
-            <span>{title}</span>
-            <span>{userId}</span>
+        <div
+            onClick={() => onPostClick(id)}
+            css={{ cursor: "pointer", width: "300px", border: "1px solid grey", margin: "10px", padding: "10px" }}
+        >
+            <div css={{ fontSize: "20px", marginBottom: "10px" }}>title: {title}</div>
+            <div css={{ fontSize: "18px" }}>content: {body}</div>
         </div>
     );
 };
